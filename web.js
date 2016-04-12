@@ -4,6 +4,8 @@ var express = require('express')
   , connectionString = process.env.DATABASE_URL
   , start = new Date()
   , port = process.env.PORT
+  ,http = require ('http').Server(app);
+  ,io = require('socket.io')(http);
   , client;
 
 client = new pg.Client(connectionString);
@@ -23,6 +25,20 @@ app.get('/', function(req, res) {
     } else {
       res.send('Visits today: ' + result.count);
     }
+  });
+});
+
+app.get('/1', function(req, res){
+  res.sendFile(__dirname + '/index.html');
+});
+io.on('connection', function(socket){
+  console.log('a user connected');
+  socket.on('chat message', function(msg){
+    io.emit('chat message', msg);
+    console.log('message: ' + msg);
+  });
+  socket.on('disconnect', function(){
+    console.log('user disconnected');
   });
 });
 
