@@ -5,6 +5,7 @@ var express = require('express')
   , start = new Date()
   , port = process.env.PORT
   , http = require ('http').Server(app)
+  , server = require('http').createServer(app)
   , io = require('socket.io')(http)
   , client;
   //, app = express.createServer(express.logger())
@@ -43,6 +44,6 @@ io.on('connection', function(socket){
   });
 });
 
-app.listen(port, function() {
+server.listen(port, function() {
   console.log('Listening on:', port);
 });
