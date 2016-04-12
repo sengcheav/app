@@ -19,7 +19,7 @@ app.get('/', function(req, res) {
   query = client.query('SELECT COUNT(date) AS count FROM visits WHERE date = $1', [date]);
   query.on('row', function(result) {
     console.log(result);
-
+    
     if (!result) {
       return res.send('No data found');
     } else {
@@ -29,7 +29,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/1', function(req, res){
-  res.send(__dirname + '/index.html');
+  res.send('/index.html');
 });
 io.on('connection', function(socket){
   console.log('a user connected');
