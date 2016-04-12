@@ -1,5 +1,5 @@
 var express = require('express')
-  , app = express.createServer(express.logger())
+  , app = express()  
   , pg = require('pg').native
   , connectionString = process.env.DATABASE_URL
   , start = new Date()
@@ -7,7 +7,7 @@ var express = require('express')
   , http = require ('http').Server(app)
   , io = require('socket.io')(http)
   , client;
-
+  //, app = express.createServer(express.logger())
 client = new pg.Client(connectionString);
 client.connect();
 
