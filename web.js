@@ -29,7 +29,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/1', function(req, res){
-  res.sendfile('/index.html');
+  res.sendfile(__dirname +'/index.html');
 });
 io.on('connection', function(socket){
   console.log('a user connected');
