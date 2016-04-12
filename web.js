@@ -12,7 +12,7 @@ var express = require('express')
 client = new pg.Client(connectionString);
 client.connect();
 
-app.get('/', function(req, res) {
+app.get('/1', function(req, res) {
   var date = new Date();
 
   client.query('INSERT INTO visits(date) VALUES($1)', [date]);
@@ -30,7 +30,7 @@ app.get('/', function(req, res) {
   });
 });
 
-app.get('/1', function(req, res){
+app.get('/', function(req, res){
   res.sendfile(__dirname +'/index.html');
 });
 io.on('connection', function(socket){
