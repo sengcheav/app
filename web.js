@@ -23,6 +23,7 @@ app.get('/', function(req, res) {
     if (!result) {
       return res.send('No data found');
     } else {
+		console.log('vistit today '+ result.count);
       res.send('Visits today: ' + result.count);
     }
   });
