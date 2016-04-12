@@ -4,8 +4,8 @@ var express = require('express')
   , connectionString = process.env.DATABASE_URL
   , start = new Date()
   , port = process.env.PORT
-  ,http = require ('http').Server(app);
-  ,io = require('socket.io')(http);
+  , http = require ('http').Server(app)
+  , io = require('socket.io')(http)
   , client;
 
 client = new pg.Client(connectionString);
