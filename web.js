@@ -12,9 +12,7 @@ var express = require('express')
 client = new pg.Client(connectionString);
 client.connect();
 
-io.configure('development', function(){
-  io.set('transports', ['xhr-polling']);
-});
+
 
 app.get('/1', function(req, res) {
   var date = new Date();
