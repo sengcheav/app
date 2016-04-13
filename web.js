@@ -46,9 +46,6 @@ io.on('connection', function(socket){
 });
 
 
-io.configure('development', function(){
-  io.set('transports', ['xhr-polling']);
-});
 
 app.listen(port, function() {
   console.log('Listening on:', port);
