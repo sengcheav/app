@@ -22,7 +22,7 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
 
     <script>
-  	var socket = io('https://sleepy-escarpment-15708.herokuapp.com:8080');
+  	var socket = io('https://sleepy-escarpment-15708.herokuapp.com');
   	$('form').submit(function(){
     	  socket.emit('chat message', $('#m').val());
           $('#m').val('');
