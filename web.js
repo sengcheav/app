@@ -1,12 +1,12 @@
 var express = require('express')
-  , app = express()  
+  , app = express()
   , pg = require('pg').native
   , connectionString = process.env.DATABASE_URL
   , start = new Date()
   , port = process.env.PORT
   , http = require ('http').Server(app)
- // , server = require('http').createServer(app)
-  , io = require('socket.io')(http)
+   ,var server = require('http').Server(app)
+  , io = require('socket.io')(server)
   , client;
   //, app = express.createServer(express.logger())
 client = new pg.Client(connectionString);
@@ -20,7 +20,7 @@ app.get('/1', function(req, res) {
   query = client.query('SELECT COUNT(date) AS count FROM visits WHERE date = $1', [date]);
   query.on('row', function(result) {
     console.log(result);
-    
+
     if (!result) {
       return res.send('No data found');
     } else {
