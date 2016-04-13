@@ -5,12 +5,16 @@ var express = require('express')
   , start = new Date()
   , port = process.env.PORT
   , http = require ('http').Server(app)
-   ,var server = require('http').Server(app)
-  , io = require('socket.io')(server)
+ // , server = require('http').createServer(app)
+  , io = require('socket.io')(http)
   , client;
   //, app = express.createServer(express.logger())
 client = new pg.Client(connectionString);
 client.connect();
+
+io.configure('development', function(){
+  io.set('transports', ['xhr-polling']);
+});
 
 app.get('/1', function(req, res) {
   var date = new Date();
