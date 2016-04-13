@@ -2,7 +2,7 @@ var express = require('express')
   , app = express()
   , port = process.env.PORT ||8080
 
- ,server = require('http').createServer(app)
+ ,server = require('http').Server(app)
  //, http = require ('http').Server(app)
   //, io = require('socket.io')(http)
   var io = require('socket.io')(server);
