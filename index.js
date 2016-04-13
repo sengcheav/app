@@ -1,11 +1,12 @@
 var express = require('express');
 var  app = express();
+var server = require('http').Server(app);
 var  port = process.env.PORT ||8080;
+var io = require('socket.io')(server);
 
- var server = require('http').Server(app);
  //, http = require ('http').Server(app)
   //, io = require('socket.io')(http)
-  var io = require('socket.io')(server);
+
 
 //  , client;
 
@@ -24,6 +25,6 @@ io.on('connection', function(socket){
   });
 });
 
-app.listen(port, function() {
+server.listen(port, function() {
   console.log('Listening on:', port);
 });
