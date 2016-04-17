@@ -141,5 +141,8 @@ findByUsername = function(username , cb){//
     if(result.count <1 ){
       console.log("no user");
       cb(null, null);
-    }else {cb (null, result)}
-  });
+    }else {cb (null, result);}
+
+  }
+
+});
