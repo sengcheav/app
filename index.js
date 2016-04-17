@@ -89,7 +89,7 @@ app.post('/signin',
 // (`username` and `password`) submitted by the user.  The function must verify
 // that the password is correct and then invoke `cb` with a user object, which
 // will be set at `req.user` in route handlers after authentication.
-passport.use(new Strategy(
+/*passport.use(new Strategy(
   function(username, password, cb) {
     findByUsername(username, function(err, user) {
       if (err) { return cb(err); }
@@ -98,7 +98,21 @@ passport.use(new Strategy(
       return cb(null, user);
     });
   }));
-
+*/
+passport.use(new Strategy(function(username, password, cb) {
+    function({
+      client.query ( 'SELECT username FROM account WHERE username =$1' ,[username]);
+      query.on('row' , function (res){
+        if(!res){ console.log('fail ') ;  cb(null, null );}
+        else { console.log('success ') ; cb(null, res) ; }
+      });
+    }), function(err, user) {
+      if (err) { return cb(err); }
+      if (!user) { return cb(null, false); }
+      if (user.password != password) { return cb(null, false); }
+      return cb(null, user);
+    });
+  }));
 
 // Configure Passport authenticated session persistence.
 //
@@ -117,13 +131,13 @@ passport.deserializeUser(function(id, cb) {
     cb(null, user);
   });
 });
-///*
+/*
 findByUsername = function(username , cb){
-  console.log('findByUsername '); 
+  console.log('findByUsername ');
   client.query ( 'SELECT username FROM account WHERE username =$1' ,[username]);
   query.on('row' , function (res){
     if(!res){ console.log('fail ') ;  cb(null, null );}
     else { console.log('success ') ; cb(null, res) ; }
   });
 }
-//*/
+*/
