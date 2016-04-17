@@ -100,12 +100,12 @@ app.post('/signin',
   }));
 */
 passport.use(new Strategy(function(username, password, cb) {
-    function(){
+    function(username, cb{
       client.query ( 'SELECT username FROM account WHERE username =$1' ,[username]);
       query.on('row' , function (res){
         if(!res){ console.log('fail ') ;  cb(null, null );}
         else { console.log('success ') ; cb(null, res) ; }
-      };
+      });
     }), function(err, user) {
       if (err) { return cb(err); }
       if (!user) { return cb(null, false); }
