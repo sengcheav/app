@@ -136,11 +136,11 @@ findByUsername = function(username , cb){//
 console.log('findByUsername2 ' + username );
   query.on('err' , function(err) {
     console.log("Error occured" ) ;
-    cb(null, null );
+    cb(null, null ); return ;
   });
   query.on('row', function(result){
     console.log("success : "+result.username + result.password) ;
-    cb(null, null);
+    cb(null, result);
   });
   query.on('end' , function(result){
     if(result.count == 1 ){
@@ -148,7 +148,7 @@ console.log('findByUsername2 ' + username );
       cb(null, result);
     }
     else {
-      cb (null, null);
+      cb (null, null);return ;
     }
 
   });
