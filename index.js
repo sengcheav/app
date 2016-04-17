@@ -54,7 +54,7 @@ server.listen(port, function() {
 
 //login stuff
 app.get('/signin', function ( req,res){
-  res.send(__dirname +'/signin.html');
+  res.sendfile(__dirname +'/signin.html');
 });
 
 app.post('/signin',
