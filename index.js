@@ -135,10 +135,10 @@ findByUsername = function(username , cb){//
     cb(null, null );
   });
   query.on('row', function(result){
-    console.log("success : "result.username + result.password) ;
+    console.log("success : "+result.username + result.password) ;
   });
   query.on('end' , function(result){
-    if(count <1 ){ 
+    if(result.count <1 ){
       console.log("no user");
       cb(null, null);
     }else {cb (null, result)}
