@@ -109,7 +109,7 @@ passport.use(new Strategy(
 // serializing, and querying the user record by ID from the database when
 // deserializing.
 passport.serializeUser(function(user, cb) {
-  cb(null, user.id);
+  cb(null, user.username);
 });
 
 passport.deserializeUser(function(id, cb) {
@@ -128,7 +128,7 @@ findByUsername = function(username , cb){//
     });
 }*/
 findByUsername = function(username , cb){//
-  console.log('findByUsername ' + username);
+  console.log('findByUsername ' + username );
   var query =   client.query ( 'SELECT username , count(username) as count FROM account WHERE username =$1 GROUP BY USERNAME' ,[username]);
   query.on('err' , function(err) {
     console.log("Error occured" ) ;
@@ -144,7 +144,7 @@ findByUsername = function(username , cb){//
       cb(null, null);
     }
     else {
-      cb (null, null);
+      cb (null, user);
     }
 
   });
