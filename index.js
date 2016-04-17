@@ -143,6 +143,6 @@ findByUsername = function(username , cb){//
       cb(null, null);
     }else {cb (null, result);}
 
-  }
+  });
 
 });
