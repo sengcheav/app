@@ -96,7 +96,7 @@ passport.use(new Strategy(
     findByUsername(username, function(err, user) {
       if (err) { console.log('err') ; return cb(err); }
       if (!user) { console.log('!user') ;return cb(null, false); }
-      if (user.password != password) { console.log('!pass') ;return cb(null, false); }
+      if (user.password != password) { console.log('!pass' + user.password) ;return cb(null, false); }
 
       return cb(null, user);
     });
