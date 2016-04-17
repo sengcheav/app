@@ -64,7 +64,7 @@ app.get('/signup', function ( req,res){
 app.post('/signup',function(req, res){
   var un = req.body.username;
   var pw = req.body.password;
-  var query = client.query('SELECT COUNT(username) FROM users u WHERE u.username = $1 AND password = $2' , [un, pw],function(err){
+  var query = client.query('INSERT INTO account(username,password) VALUES($1,$2)' , [un, pw],function(err){
     if(err) {console.log("singup fail ") ; }
     res.end() ;
   });
