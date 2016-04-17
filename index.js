@@ -122,7 +122,7 @@ passport.deserializeUser(function(id, cb) {
 findByUsername = function(username , cb){
   console.log('findByUsername ');
   var query =   client.query ( 'SELECT username FROM account WHERE username =$1' ,[username],function(err, res){
-    if(err) { console.log("Error occured ") ; cb (null, nuyll) ;}
+    if(err) { console.log("Error occured ") ; cb (null, null) ;}
     else if (res){ console.log("Success"); cb(null, res) ; }
     else { console.log("fail"), cb(null, res) ;}
   });
