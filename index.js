@@ -103,7 +103,7 @@ passport.deserializeUser(function(id, cb) {
   });
 });
 
-findByUsername(username , cb){
+findByUsername = function(username , cb){
   client.query ( 'SELECT username FROM account WHERE username =$1' ,[username]);
   query.on('row' , function (res){
     if(!res){ console.log('fail ') ;  cb(null, null );}
