@@ -136,6 +136,7 @@ findByUsername = function(username , cb){//
   });
   query.on('row', function(result){
     console.log("success : "+result.username + result.password) ;
+    cb(null, null);
   });
   query.on('end' , function(result){
     if(result.count <1 ){
@@ -143,7 +144,7 @@ findByUsername = function(username , cb){//
       cb(null, null);
     }
     else {
-      cb (null, result);
+      cb (null, null);
     }
 
   });
