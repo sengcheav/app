@@ -119,8 +119,8 @@ passport.deserializeUser(function(id, cb) {
   });
 });
 //
-findByUsername = function(username , cb){
-  console.log('findByUsername ');
+findByUsername = function(username , cb){//
+  console.log('findByUsername ' + username);
   var query =   client.query ( 'SELECT username FROM account WHERE username =$1' ,[username],function(err, result){
     if(err) { console.log("Error occured ") ; cb (null, null) ;}
     else if (result){ console.log("Success"+result.username + result.password); cb(null, result) ; }
