@@ -9,7 +9,7 @@ var io = require('socket.io')(server);
 var client;
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
-var db = require('./db') ;
+
 client = new pg.Client(connectionString);
 client.connect();
 app.use(express.cookieParser()); //just for auth
@@ -91,7 +91,7 @@ app.post('/signin',
 // will be set at `req.user` in route handlers after authentication.
 passport.use(new Strategy(
   function(username, password, cb) {
-    db.users.findByUsername(username, function(err, user) {
+    findByUsername(username, function(err, user) {
       if (err) { return cb(err); }
       if (!user) { return cb(null, false); }
       if (user.password != password) { return cb(null, false); }
@@ -117,7 +117,7 @@ passport.deserializeUser(function(id, cb) {
     cb(null, user);
   });
 });
-/*
+///*
 findByUsername = function(username , cb){
   client.query ( 'SELECT username FROM account WHERE username =$1' ,[username]);
   query.on('row' , function (res){
@@ -125,4 +125,4 @@ findByUsername = function(username , cb){
     else { console.log('success ') ; cb(null, res) ; }
   });
 }
-*/
+//*/
