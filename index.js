@@ -9,7 +9,7 @@ var io = require('socket.io')(server);
 var client;
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
-
+var db = require('./db') ;
 client = new pg.Client(connectionString);
 client.connect();
 app.use(express.cookieParser()); //just for auth
@@ -66,7 +66,7 @@ app.post('/signup',function(req, res){
   var pw = req.body.password;
   var query = client.query('SELECT COUNT(username) FROM users u WHERE u.username = $1 AND password = $2' , [un, pw],function(err){
     if(err) {console.log("singup fail ") ; }
-    res.end() ; 
+    res.end() ;
   });
 
 
@@ -91,7 +91,7 @@ app.post('/signin',
 // will be set at `req.user` in route handlers after authentication.
 passport.use(new Strategy(
   function(username, password, cb) {
-    findByUsername(username, function(err, user) {
+    db.users.findByUsername(username, function(err, user) {
       if (err) { return cb(err); }
       if (!user) { return cb(null, false); }
       if (user.password != password) { return cb(null, false); }
@@ -117,7 +117,7 @@ passport.deserializeUser(function(id, cb) {
     cb(null, user);
   });
 });
-////
+/*
 findByUsername = function(username , cb){
   client.query ( 'SELECT username FROM account WHERE username =$1' ,[username]);
   query.on('row' , function (res){
@@ -125,3 +125,4 @@ findByUsername = function(username , cb){
     else { console.log('success ') ; cb(null, res) ; }
   });
 }
+*/
