@@ -118,16 +118,28 @@ passport.deserializeUser(function(id, cb) {
     cb(null, user);
   });
 });
-//
+/*
 findByUsername = function(username , cb){//
   console.log('findByUsername ' + username);
-  var query =   client.query ( 'SELECT username FROM account WHERE username =$1' ,[username],function(err, result){
-    if(err) { console.log("Error occured ") ; cb (null, null) ;}
-    else if (result){ console.log("Success"+result.username + result.password); cb(null, result) ; }
-    else { console.log("fail"), cb(null, result) ;}
+  var query =   client.query ( 'SELECT username FROM account WHERE username =$1' ,[username]);
+    query.on('row' , function (res){
+      if(!res){ console.log('fail ') ;  cb(null, null );}
+      else { console.log('success ') ; cb(null, res) ; }
+    });
+}*/
+findByUsername = function(username , cb){//
+  console.log('findByUsername ' + username);
+  var query =   client.query ( 'SELECT username , count(username) as count FROM account WHERE username =$1' ,[username]);
+  query.on('err' , function(err) {
+    console.log("Error occured" ) ;
+    cb(null, null );
   });
-    //query.on('row' , function (res,err){
-      //if(!res){ console.log('fail ') ;  cb(null, null );}
-      //else { console.log('success ') ; cb(null, res) ; }
-    //});
-}
+  query.on('row', function(result){
+    console.log("success : "result.username + result.password) ;
+  });
+  query.on('end' , function(result){
+    if(count <1 ){ 
+      console.log("no user");
+      cb(null, null);
+    }else {cb (null, result)}
+  });
