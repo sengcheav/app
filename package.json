@@ -8,6 +8,10 @@
   "dependencies": {
     "express": "^3.5.1",
     "pg": "^3.0.3",
-    "socket.io": "^1.4.5"
+    "socket.io": "^1.4.5",
+    "passport" : "latest" ,
+    "passport-local":"latest",
+    "body-parser": "latest",
+    "cookie-parser": "latest"
   }
 }
