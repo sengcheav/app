@@ -53,8 +53,8 @@ server.listen(port, function() {
 });
 
 //login stuff
-app.get('/login', function ( req,res){
-  res.send(__dirname +'/login.html');
+app.get('/signin', function ( req,res){
+  res.send(__dirname +'/signin.html');
 });
 
 app.post('/login',
