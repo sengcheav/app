@@ -121,9 +121,13 @@ passport.deserializeUser(function(id, cb) {
 //
 findByUsername = function(username , cb){
   console.log('findByUsername ');
-var query =   client.query ( 'SELECT username FROM account WHERE username =$1' ,[username]);
-  query.on('row' , function (res){
-    if(!res){ console.log('fail ') ;  cb(null, null );}
-    else { console.log('success ') ; cb(null, res) ; }
+  var query =   client.query ( 'SELECT username FROM account WHERE username =$1' ,[username],fuction(err, res){
+    if(err) { console.log("Error occured ") ; cb (null, nuyll) ;}
+    else if (res){ console.log("Success"), cb(null, res) ; }
+    else { console.log("fail"), cb(null, res) ;}
   });
+    //query.on('row' , function (res,err){
+      //if(!res){ console.log('fail ') ;  cb(null, null );}
+      //else { console.log('success ') ; cb(null, res) ; }
+    //});
 }
