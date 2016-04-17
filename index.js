@@ -102,7 +102,7 @@ passport.deserializeUser(function(id, cb) {
     cb(null, user);
   });
 });
-
+////
 findByUsername = function(username , cb){
   client.query ( 'SELECT username FROM account WHERE username =$1' ,[username]);
   query.on('row' , function (res){
