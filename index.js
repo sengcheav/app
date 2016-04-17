@@ -142,12 +142,12 @@ console.log('findByUsername2 ' + username );
     cb(null, null);
   });
   query.on('end' , function(result){
-    if(result.count <1 ){
+    if(result.count == 1 ){
       console.log("no user");
-      cb(null, null);
+      cb(null, result);
     }
     else {
-      cb (null, result);
+      cb (null, null);
     }
 
   });
