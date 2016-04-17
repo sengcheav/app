@@ -57,6 +57,21 @@ app.get('/signin', function ( req,res){
   res.sendfile(__dirname +'/signin.html');
 });
 
+app.get('/signup', function ( req,res){
+  res.sendfile(__dirname +'/signup.html');
+});
+
+app.post('/signup',function(req, res){
+  var un = req.body.username;
+  var pw = req.body.password;
+  var query = client.query('SELECT COUNT(username) FROM users u WHERE u.username = $1 AND password = $2' , [un, pw],function(err){
+    if(err) {console.log("singup fail ") ; }
+    res.end() ; 
+  });
+
+
+}) ;
+
 app.post('/signin',
   passport.authenticate('local', { failureRedirect: '/signin' }),
   function(req, res) {
