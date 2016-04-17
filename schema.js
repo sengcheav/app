@@ -6,5 +6,5 @@ var pg = require('pg').native
 client = new pg.Client(connectionString);
 client.connect();
 //query = client.query('CREATE TABLE visits (date date)');
-query = client.query('CREATE TABLE account (username VARCHAR(10) PRIMARY KEY , password VARCAHR(10) )');
+query = client.query('CREATE TABLE account (username VARCHAR(10) PRIMARY KEY , password VARCHAR(10) )');
 query.on('end', function(result) { client.end(); });
