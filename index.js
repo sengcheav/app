@@ -121,6 +121,7 @@ passport.use(new Strategy(
              console.log("correct");
              cb(null, result );
            }
+           return cb(null, null);
         }else {
           console.log("no user") ;
           return cb(null, null);
