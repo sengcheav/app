@@ -90,7 +90,7 @@ app.post('/signin',
 // (`username` and `password`) submitted by the user.  The function must verify
 // that the password is correct and then invoke `cb` with a user object, which
 // will be set at `req.user` in route handlers after authentication.
-/*
+
 passport.use(new Strategy(
   function(username, password, cb) {
     console.log("strategy");
@@ -103,7 +103,7 @@ passport.use(new Strategy(
      }
     });
   }));
-*/
+/*
   passport.use(new Strategy(
     function(username, password, cb) {
       console.log("strategy");
@@ -131,7 +131,7 @@ passport.use(new Strategy(
      query.on('end' , function(result){
           return cb (null, null);
       });
-
+*/
 
 
 
