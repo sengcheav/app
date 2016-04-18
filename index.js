@@ -142,7 +142,7 @@ console.log('findByUsername2 ' + username );
     console.log("success : "+result.username + result.password) ;
     cb(null, result);
   });
-  query.on('end' , function(result){
+/*  query.on('end' , function(result){
     if(result.count == 1 ){
       console.log("no user");
       //cb(null, result);
@@ -152,5 +152,5 @@ console.log('findByUsername2 ' + username );
     }
 
   });
-
+*/
 }
