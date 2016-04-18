@@ -154,7 +154,7 @@ findByUsername = function(username , cb){//
  query.on('end' , function(result){
       return cb (null, null);
   });*/
-var query =   client.query ( 'SELECT username , count(username) as count FROM account WHERE username =$1 GROUP BY USERNAME' ,[username],fucntion(err, result){
+var query =   client.query ( 'SELECT username , count(username) as count FROM account WHERE username =$1 GROUP BY USERNAME' ,[username],function(err, result){
   if(err) {
     console.log("Error occured" ) ;
     return cb(err, null ); return ;
