@@ -117,7 +117,8 @@ passport.use(new Strategy(
         if( username === result.username){
           console.log("exists");
         //  return cb(null , result) ;
-           if(password == result.password){
+           if(password === result.password){
+             console.log("correct");
              cb(null, result );
            }
         }else {
