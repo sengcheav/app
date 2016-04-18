@@ -145,22 +145,22 @@ findByUsername = function(username , cb){//
       console.log("exists");
       return cb(null , result) ;
     }else {
-      console.log("no user") ; 
+      console.log("no user") ;
       return cb(null, result);
     }
   });
 
-/*
+///*
  query.on('end' , function(result){
-    if(result.count == 1 ){
-      console.log("no user");
-      return cb(null, result);
-    }
-    else {
+    //if(result.count == 1 ){
+    //  console.log("no user");
+  //    return cb(null, result);
+  //  }
+    //else {
       return cb (null, null);
-    }
+    //}
 
-  });*/
+  });//*/
 });
 ////////////
 //*/
