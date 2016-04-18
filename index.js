@@ -96,10 +96,11 @@ passport.use(new Strategy(
     console.log("strategy");
     findByUsername(username, function(err, user) {
       if (err) { console.log('err') ;  cb(err); }
-      if (!user) { console.log('!user') ; cb(null, false); }
-      if (user.password != password) { console.log('!pass ' + user.password) ; cb(null, false); }
-
+      else if (!user) { console.log('!user') ; cb(null, false); }
+      else if (user.password != password) { console.log('!pass ' + user.password) ; cb(null, false); }
+      else {
        cb(null, user);
+     }
     });
   }));
 
@@ -146,7 +147,7 @@ findByUsername = function(username , cb){//
       return cb(null , result) ;
     }else {
       console.log("no user") ;
-      return cb(null, result);
+      return cb(null, null);
     }
   });
 
