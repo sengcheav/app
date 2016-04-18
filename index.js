@@ -159,12 +159,12 @@ var query =   client.query ( 'SELECT username , count(username) as count FROM ac
     console.log("Error occured" ) ;
     return cb(err, null ); return ;
   }
-  if(result){
-    console.log("found") ;
-    return cb(null, result) ;
+  if(!result){
+    console.log("not found") ;
+    return cb(null, null) ;
   }else {
-    console.log('no user found') ;
-    return cb(null, null);
+    console.log(' found') ;
+    return cb(null, result);
   }
 });
 
