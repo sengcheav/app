@@ -164,7 +164,15 @@ var query =   client.query ( 'SELECT username , count(username) as count FROM ac
     return cb(null, null) ;
   }else {
     console.log(' found') ;
-    return cb(null, result);
+    query.on('row', function(result){
+      console.log("success : "+result.username + result.password) ;
+      if( username === result.username){
+        console.log("exists");
+        return cb(null , result) ;
+      }else {
+        console.log("no user") ;
+        return cb(null, null);
+      }
   }
 });
 
