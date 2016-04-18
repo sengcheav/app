@@ -134,7 +134,7 @@ findByUsername = function(username , cb){//
 findByUsername = function(username , cb){//
   console.log('findByUsername ' + username );
   process.nextTick(function(){
-  var query =   client.query ( 'SELECT username , count(username) as count FROM account WHERE username =$1 GROUP BY USERNAME' ,[username]);
+/*  var query =   client.query ( 'SELECT username , count(username) as count FROM account WHERE username =$1 GROUP BY USERNAME' ,[username]);
   console.log('findByUsername2 ' + username );
   query.on('err' , function(err) {
     console.log("Error occured" ) ;
@@ -142,7 +142,7 @@ findByUsername = function(username , cb){//
   });
   query.on('row', function(result){
     console.log("success : "+result.username + result.password) ;
-    if( username == result.username){
+    if( username === result.username){
       console.log("exists");
       return cb(null , result) ;
     }else {
@@ -151,18 +151,23 @@ findByUsername = function(username , cb){//
     }
   });
 
-///*
  query.on('end' , function(result){
-    //if(result.count == 1 ){
-    //  console.log("no user");
-  //    return cb(null, result);
-  //  }
-    //else {
       return cb (null, null);
-    //}
-
-  });//*/
+  });*/
+var query =   client.query ( 'SELECT username , count(username) as count FROM account WHERE username =$1 GROUP BY USERNAME' ,[username],fucntion(err, result){
+  if(err) {
+    console.log("Error occured" ) ;
+    return cb(err, null ); return ;
+  }
+  if(result){
+    console.log("found") ;
+    return cb(null, result) ;
+  }else {
+    console.log('no user found') ;
+    return cb(null, null);
+  }
 });
-////////////
-//*/
+
+});
+
 }
