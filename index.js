@@ -97,7 +97,7 @@ passport.use(new Strategy(
     findByUsername(username, function(err, user) {
       if (err) { console.log('err') ; return cb(err); }
       if (!user) { console.log('!user') ;return cb(null, false); }
-      if (user.password != password) { console.log('!pass' + user.password) ;return cb(null, false); }
+      if (user.password != password) { console.log('!pass ' + user.password) ;return cb(null, false); }
 
       return cb(null, user);
     });
@@ -142,15 +142,15 @@ console.log('findByUsername2 ' + username );
     console.log("success : "+result.username + result.password) ;
     cb(null, result);
   });
-/*  query.on('end' , function(result){
+ query.on('end' , function(result){
     if(result.count == 1 ){
       console.log("no user");
       //cb(null, result);
     }
     else {
-      cb (null, null);return ;
+      cb (null, null);
     }
 
   });
-*/
+//*/
 }
