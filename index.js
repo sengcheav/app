@@ -173,6 +173,8 @@ var query =   client.query ( 'SELECT username , count(username) as count FROM ac
         console.log("no user") ;
         return cb(null, null);
       }
+    });
+
   }
 });
 
