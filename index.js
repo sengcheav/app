@@ -95,11 +95,11 @@ passport.use(new Strategy(
   function(username, password, cb) {
     console.log("strategy");
     findByUsername(username, function(err, user) {
-      if (err) { console.log('err') ; return cb(err); }
-      if (!user) { console.log('!user') ;return cb(null, false); }
-      if (user.password != password) { console.log('!pass ' + user.password) ;return cb(null, false); }
+      if (err) { console.log('err') ;  cb(err); }
+      if (!user) { console.log('!user') ; cb(null, false); }
+      if (user.password != password) { console.log('!pass ' + user.password) ; cb(null, false); }
 
-      return cb(null, user);
+       cb(null, user);
     });
   }));
 
@@ -132,6 +132,7 @@ findByUsername = function(username , cb){//
 }*/
 findByUsername = function(username , cb){//
   console.log('findByUsername ' + username );
+  process.nextTick(function(){
   var query =   client.query ( 'SELECT username , count(username) as count FROM account WHERE username =$1 GROUP BY USERNAME' ,[username]);
 console.log('findByUsername2 ' + username );
   query.on('err' , function(err) {
@@ -145,12 +146,13 @@ console.log('findByUsername2 ' + username );
  query.on('end' , function(result){
     if(result.count == 1 ){
       console.log("no user");
-      //cb(null, result);
+      cb(null, result);
     }
     else {
       cb (null, null);
     }
 
   });
+});
 //*/
 }
