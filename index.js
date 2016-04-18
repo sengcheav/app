@@ -124,7 +124,7 @@ passport.use(new Strategy(
           // }
         }else {
           console.log("no user") ;
-          //return cb(null, null);
+          return cb(null, result);
         }
       });
 
