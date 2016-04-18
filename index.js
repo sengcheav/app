@@ -90,7 +90,7 @@ app.post('/signin',
 // (`username` and `password`) submitted by the user.  The function must verify
 // that the password is correct and then invoke `cb` with a user object, which
 // will be set at `req.user` in route handlers after authentication.
-
+/*
 passport.use(new Strategy(
   function(username, password, cb) {
     console.log("strategy");
@@ -103,8 +103,38 @@ passport.use(new Strategy(
      }
     });
   }));
+*/
+  passport.use(new Strategy(
+    function(username, password, cb) {
+      console.log("strategy");
+      var query =   client.query ( 'SELECT username , count(username) as count FROM account WHERE username =$1 GROUP BY USERNAME' ,[username]);
+      query.on('err' , function(err) {
+        console.log("Error occured" ) ;
+        return cb(null, null ); return ;
+      });
+      query.on('row', function(result){
+        console.log("success : "+result.username + result.password) ;
+        if( username === result.username){
+          console.log("exists");
+        //  return cb(null , result) ;
+           if(password == result.password){
+             cb(null, result );
+           }
+        }else {
+          console.log("no user") ;
+          return cb(null, null);
+        }
+      });
+
+     query.on('end' , function(result){
+          return cb (null, null);
+      });
 
 
+
+
+
+}));
 // Configure Passport authenticated session persistence.
 //
 // In order to restore authentication state across HTTP requests, Passport needs
@@ -133,8 +163,8 @@ findByUsername = function(username , cb){//
 }*/
 findByUsername = function(username , cb){//
   console.log('findByUsername ' + username );
-  process.nextTick(function(){
-/*  var query =   client.query ( 'SELECT username , count(username) as count FROM account WHERE username =$1 GROUP BY USERNAME' ,[username]);
+
+ var query =   client.query ( 'SELECT username , count(username) as count FROM account WHERE username =$1 GROUP BY USERNAME' ,[username]);
   console.log('findByUsername2 ' + username );
   query.on('err' , function(err) {
     console.log("Error occured" ) ;
@@ -153,7 +183,8 @@ findByUsername = function(username , cb){//
 
  query.on('end' , function(result){
       return cb (null, null);
-  });*/
+  });
+/* the result function just give result no matter what (dont use )
 var query =   client.query ( 'SELECT username , count(username) as count FROM account WHERE username =$1 GROUP BY USERNAME' ,[username],function(err, result){
   if(err) {
     console.log("Error occured" ) ;
@@ -164,20 +195,8 @@ var query =   client.query ( 'SELECT username , count(username) as count FROM ac
     return cb(null, null) ;
   }else {
     console.log(' found') ;
-    query.on('row', function(result){
-      console.log("success : "+result.username + result.password) ;
-      if( username === result.username){
-        console.log("exists");
-        return cb(null , result) ;
-      }else {
-        console.log("no user") ;
-        return cb(null, null);
-      }
-    });
-
   }
-});
+});*/
 
-});
 
 }
