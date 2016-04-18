@@ -140,7 +140,7 @@ console.log('findByUsername2 ' + username );
   });
   query.on('row', function(result){
     console.log("success : "+result.username + result.password) ;
-  //  cb(null, result);
+    cb(null, result);
   });
   query.on('end' , function(result){
     if(result.count == 1 ){
