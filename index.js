@@ -134,25 +134,33 @@ findByUsername = function(username , cb){//
   console.log('findByUsername ' + username );
   process.nextTick(function(){
   var query =   client.query ( 'SELECT username , count(username) as count FROM account WHERE username =$1 GROUP BY USERNAME' ,[username]);
-console.log('findByUsername2 ' + username );
+  console.log('findByUsername2 ' + username );
   query.on('err' , function(err) {
     console.log("Error occured" ) ;
-    cb(null, null ); return ;
+    return cb(null, null ); return ;
   });
   query.on('row', function(result){
     console.log("success : "+result.username + result.password) ;
-    cb(null, result);
+    if( username == result.username){
+      console.log("exists");
+      return cb(null , result) ;
+    }else {
+      console.log("no user") ; 
+      return cb(null, result);
+    }
   });
+
+/*
  query.on('end' , function(result){
     if(result.count == 1 ){
       console.log("no user");
-      cb(null, result);
+      return cb(null, result);
     }
     else {
-      cb (null, null);
+      return cb (null, null);
     }
 
-  });
+  });*/
 });
 ////////////
 //*/
