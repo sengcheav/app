@@ -114,7 +114,7 @@ passport.use(new Strategy(
       });
       query.on('row', function(result){
         console.log("success : "+result.username + result.password) ;
-        if( username === result.username && password === result.password){
+        if( username === result.username && password == result.password){
           console.log("exists & correct");
           // if(password === result.password){
              //console.log("correct");
@@ -124,7 +124,7 @@ passport.use(new Strategy(
           // }
         }else {
           console.log("no user") ;
-          return cb(null, result);
+          return cb(null, false);
         }
       });
 
