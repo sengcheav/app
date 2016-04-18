@@ -120,17 +120,17 @@ passport.use(new Strategy(
              console.log("correct");
              cb(null, result );
            }else {
-             return cb(null, null);
+              //return cb(null, null);
            }
         }else {
           console.log("no user") ;
-          return cb(null, null);
+          //return cb(null, null);
         }
       });
 
-  //   query.on('end' , function(result){
-  //        return cb (null, null);
-  //    });
+     query.on('end' , function(result){
+          return cb (null, null);
+      });
 
 
 
