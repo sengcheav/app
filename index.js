@@ -114,14 +114,14 @@ passport.use(new Strategy(
       });
       query.on('row', function(result){
         console.log("success : "+result.username + result.password) ;
-        if( username === result.username){
-          console.log("exists");
-           if(password === result.password){
-             console.log("correct");
+        if( username === result.username && password === result.password){
+          console.log("exists & correct");
+          // if(password === result.password){
+             //console.log("correct");
              cb(null, result );
-           }else {
+          // }else {
               //return cb(null, null);
-           }
+          // }
         }else {
           console.log("no user") ;
           //return cb(null, null);
